@@ -1,0 +1,149 @@
+/* Contenu principal */
+
+#skills {
+        background-color: var(--dark-black);
+
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.skill {
+    flex: 1 1 50%;
+    /* deux colonnes */
+}
+
+.skill #interets {
+    flex: 1 1 100%;
+    /* dernière sur toute la largeur */
+
+}
+
+.skill #interets ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.skill {
+    background: var(--light-black);
+    padding: 2rem;
+    border: 1px solid var(--dark-or);
+    text-align: center;
+    transition: var(--transition);
+    color: var(--text-dark);
+
+}
+
+.skill ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.skill li {
+    background: var(--very-light-or);
+    border-left: 4px solid var(--dark-or);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 1rem;
+}
+
+.skill #interets li {
+    font-size: 1.5rem;
+}
+
+.skill li span {
+    font-weight: 650;
+    color: var(--light-black);
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+}
+
+/* Texte descriptif après le span */
+.skill li::after {
+    content: attr(data-desc);
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+.skills {
+    padding: 2rem;
+    background-color: var(--light-black);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.skill-icons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skill-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: var(--very-light-or);
+    border-radius: 8px;
+    transition: var(--transition);
+    border-left: 4px solid var(--primary-bg);
+    border-left: 4px solid var(--dark-or);
+
+
+}
+
+
+.skill #soft ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skill #soft li {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.skill-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+.skill-icon p {
+    font-size: 0.9rem;
+    color: var(--text-accent);
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+
+    .skill #soft ul {
+        justify-content: center;
+    }
+
+    .skill #soft li {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+
+}

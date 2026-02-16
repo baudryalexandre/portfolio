@@ -1,0 +1,62 @@
+/* Contact Form stylé comme les sections principales */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--dark-black);      /* Fond identique aux sections */
+    padding: 2rem;
+    border: 1px solid var(--dark-or);   /* Bordure or */
+    border-radius: 8px;
+    color: var(--text-dark);
+    transition: var(--transition);
+}
+
+input,
+textarea {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--very-light-or);    /* Fond comme les <li> */
+    color: var(--light-black);          /* Texte noir clair */
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-dark);
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border: 2px solid var(--dark-or);   /* Bordure or sur focus */
+    box-shadow: 0 0 0 3px rgba(94, 63, 29, 0.2); /* Ombre douce */
+}
+
+button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background: var(--dark-or);          /* Bouton or */
+    color: var(--dark-black);            /* Texte noir */
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    background: var(--light-or);         /* Hover plus clair */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(94, 63, 29, 0.4); /* Ombre or hover */
+}
+
+#contact {
+    padding: 2rem;
+    background-color: var(--dark-black);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.6s ease forwards;
+}
