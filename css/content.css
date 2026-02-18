@@ -1,0 +1,132 @@
+
+/* Contenu principal */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main {
+    flex: 1 1 50%;
+    /* deux colonnes */
+}
+
+.main #interets {
+    flex: 1 1 100%;
+    /* dernière sur toute la largeur */
+}
+
+.main #interets ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+}
+
+.main {
+    background: var(--dark-black);
+    padding: 2rem;
+    border: 1px solid var(--dark-or);
+    text-align: center;
+    transition: var(--transition);
+    color: var(--text-dark);
+
+}
+
+.main ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.main li {
+    background: var(--very-light-or);
+    border-left: 4px solid var(--dark-or);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 1rem;
+}
+
+.main #interets li {
+    font-size: 1.5rem;
+}
+
+.main li span {
+    font-weight: 650;
+    color: var(--light-black);
+    font-size: clamp(1rem, 1.3vw, 1.3rem);
+}
+
+/* Texte descriptif après le span */
+.main li::after {
+    content: attr(data-desc);
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+.mains {
+    padding: 2rem;
+    background-color: var(--light-black);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+
+/* =========================
+   Responsive Tablet
+========================= */
+
+@media (max-width: 1024px) {
+
+    .main {
+        flex: 1 1 100%;
+    }
+
+}
+
+
+/* =========================
+   Responsive Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+    .mains {
+        padding: 1.5rem 1rem;
+    }
+
+    .main {
+        flex: 1 1 100%;
+        padding: 1.5rem;
+    }
+
+    .main ul {
+        gap: 0.8rem;
+    }
+
+    .main li {
+        font-size: 0.95rem;
+        padding: 0.9rem 1rem;
+    }
+
+    .main #interets ul {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .main #interets li {
+        font-size: 1.2rem;
+        padding: 0.8rem 1rem;
+    }
+
+}

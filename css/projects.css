@@ -1,0 +1,109 @@
+#projects {
+    padding: 2rem;
+    background-color: var(--light-black);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Projets */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+    align-items: stretch; /* cartes mêmes hauteurs */
+}
+
+.project {
+    background: var(--very-light-or);
+    padding: 2rem;
+    border: 2px solid var(--dark-color); /* conservé */
+    border-radius: 12px;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* stabilité hauteur */
+}
+
+.project:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px var(--shadow-color); /* conservé */
+}
+
+.project h3 {
+    display: flex;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    justify-content: center;
+}
+
+.project p {
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.project #github {
+    font-size: 0.9rem;
+    text-underline-offset: 0.2em;
+    color: var(--hypertext-color);
+    text-decoration-color: var(--text-decoration-color);
+}
+
+.project li .colored-link {
+    font-size: 1rem;
+    display: inline-block; /* centrage propre */
+    margin: 0.3rem auto;
+    color: var(--hypertext-color);
+    text-decoration-color: var(--text-decoration-color);
+}
+
+.project li {
+    list-style: none;
+}
+
+.project img {
+    width: 100%;          /* prend toute la largeur du conteneur */
+    height: 160px;        /* hauteur fixe identique pour toutes */
+    object-fit: contain;  /* garde le ratio, pas de recadrage */
+    display: block;
+    margin-top: 1rem;
+    border-radius: 8px;
+    background-color: var(--very-light-or); /* si fond visible autour de l'image */
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    #projects {
+        padding: 1.5rem 1rem;
+    }
+
+    .project-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project {
+        padding: 1.5rem;
+    }
+
+    .project h3 {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .project p {
+        font-size: 0.95rem;
+        text-align: left;
+        line-height: 1.5;
+    }
+
+    .project img {
+        height: 160px;
+    }
+
+    .project li .colored-link {
+        justify-content: center;
+    }
+}
