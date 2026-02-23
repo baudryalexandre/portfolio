@@ -67,8 +67,8 @@
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 5rem;
+    grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+    gap: 4rem;
     align-items: center;
 }
 
@@ -328,13 +328,17 @@
 
 @media (max-width: 900px) {
     #about {
-        padding: 6rem 1.5rem 4rem;
+        padding: 5.5rem 1.5rem 3.5rem;
         min-height: auto;
     }
 
     .about-inner {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .about-divider {
@@ -342,42 +346,17 @@
     }
 
     .about-identity {
-        flex-direction: row;
-        text-align: left;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-        align-items: flex-start;
-    }
-
-    .about-avatar {
-        flex-shrink: 0;
-    }
-
-    .about-name,
-    .about-title,
-    .about-accroche {
-        text-align: left;
-    }
-
-    .about-tags {
-        justify-content: flex-start;
-        max-width: 100%;
-    }
-
-    .about-content h2 {
-        text-align: center;
-    }
-}
-
-@media (max-width: 600px) {
-    #about {
-        padding: 5rem 1rem 3rem;
-    }
-
-    .about-identity {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        padding: 1.5rem 1.4rem;
+        border-radius: 14px;
+        border: 1px solid rgba(190,132,69,0.18);
+        background: radial-gradient(circle at top, rgba(190,132,69,0.18) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.95) 100%);
+        box-shadow: 0 14px 38px rgba(0,0,0,0.65);
+        max-width: 380px;
+        width: 100%;
+        margin: 0 auto;
     }
 
     .about-name,
@@ -388,20 +367,111 @@
 
     .about-tags {
         justify-content: center;
-        max-width: 260px;
+        max-width: 100%;
+    }
+
+    .about-content h2 {
+        text-align: center;
     }
 
     .about-stats {
-        flex-wrap: wrap;
+        margin-top: 1rem;
     }
 
     .about-stat {
-        flex: 1 1 45%;
+        flex: 1 1 50%;
         border-right: none;
         border-bottom: 1px solid rgba(190,132,69,0.1);
     }
 
+    .about-stat:nth-child(3),
+    .about-stat:nth-child(4) {
+        border-bottom: none;
+    }
+}
+
+@media (max-width: 600px) {
+    #about {
+        padding: 4.5rem 1rem 2.8rem;
+    }
+
+    .about-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.2rem;
+    }
+
+    .about-identity {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        border-radius: 14px;
+        border: 1px solid rgba(190,132,69,0.18);
+        background: radial-gradient(circle at top, rgba(190,132,69,0.18) 0%, rgba(0,0,0,0.75) 55%, rgba(0,0,0,0.95) 100%);
+        box-shadow: 0 14px 38px rgba(0,0,0,0.65);
+        max-width: 320px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .about-name,
+    .about-title,
+    .about-accroche {
+        text-align: center;
+    }
+
+    .about-name {
+        font-size: 1.05rem;
+        letter-spacing: 1.8px;
+    }
+
+    .about-title {
+        font-size: 0.7rem;
+        letter-spacing: 2.4px;
+    }
+
+    .about-tags {
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .about-stats {
+        flex-wrap: wrap;
+        margin-top: 1rem;
+    }
+
+    .about-stat {
+        flex: 1 1 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(190,132,69,0.1);
+    }
+
+    /* Sur mobile, on supprime la lettrine pour un texte plus lisible */
     .about-content p.about-intro::first-letter {
-        font-size: 2.4rem;
+        float: none;
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+        -webkit-text-fill-color: inherit;
+        background: none;
+        filter: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .about-content p {
+        font-size: 0.86rem;
+    }
+
+    .about-inner {
+        gap: 2rem;
     }
 }

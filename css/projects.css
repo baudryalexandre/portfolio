@@ -1,20 +1,99 @@
 #projects {
-    padding: 3rem 2rem;
+    padding: 4rem 2rem;
     background-color: var(--light-black);
     transition: all 0.6s ease;
     animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Liseré doré en haut, comme la section formations/expériences */
+#projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(190,132,69,0.3) 40%,
+        rgba(190,132,69,0.3) 60%,
+        transparent
+    );
+    pointer-events: none;
 }
 
 /* ===========================
    BARRE DE FILTRES — Style pro
 =========================== */
 
+.project-filters-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+}
+
+.project-filters-toggle {
+    display: none; /* visible seulement en mobile */
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(190,132,69,0.45);
+    background: rgba(0,0,0,0.65);
+    color: rgba(233,175,112,0.9);
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.project-filters-toggle-icon {
+    width: 14px;
+    height: 12px;
+    position: relative;
+    display: inline-block;
+}
+
+.project-filters-toggle-icon::before,
+.project-filters-toggle-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(233,175,112,0.9);
+    transition: transform 0.25s ease, top 0.25s ease, bottom 0.25s ease;
+}
+
+.project-filters-toggle-icon::before {
+    top: 2px;
+}
+
+.project-filters-toggle-icon::after {
+    bottom: 2px;
+}
+
+.project-filters-wrapper.open .project-filters-toggle-icon::before {
+    top: 5px;
+    transform: rotate(45deg);
+}
+
+.project-filters-wrapper.open .project-filters-toggle-icon::after {
+    bottom: 5px;
+    transform: rotate(-45deg);
+}
+
 .project-filters {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 0;
-    margin-bottom: 3rem;
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(190, 132, 69, 0.2);
     border-radius: 14px;
@@ -255,12 +334,19 @@
     grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 2rem;
     align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Quand un seul projet est affiché (filtre), on réduit la largeur pour un rendu plus pro */
+.project-list.single-project {
+    max-width: 720px;
 }
 
 .project {
-    background: var(--very-light-or);
-    padding: 2rem;
-    border: 1px solid rgba(94, 63, 29, 0.4);
+    background: rgba(255,255,255,0.02);
+    padding: 2.1rem 2rem 2.4rem;
+    border: 1px solid rgba(190,132,69,0.14);
     border-radius: 14px;
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.35s ease;
     display: flex;
@@ -275,12 +361,12 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 10%;
-    right: 10%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--dark-or), transparent);
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(190,132,69,0.7), transparent);
     border-radius: 0 0 4px 4px;
-    opacity: 0;
+    opacity: 0.75;
     transition: opacity 0.3s ease;
 }
 
@@ -295,20 +381,20 @@
 .project:hover {
     transform: translateY(-5px);
     box-shadow:
-        0 16px 40px rgba(0, 0, 0, 0.25),
-        0 4px 12px rgba(94, 63, 29, 0.2);
+        0 18px 46px rgba(0, 0, 0, 0.65),
+        0 0 0 1px rgba(190,132,69,0.15);
 }
 
 .project h3 {
-    color: var(--text-dark);
-    margin-bottom: 0.5rem;
+    color: var(--very-light-or);
+    margin-bottom: 0.7rem;
     font-size: 1.2rem;
-    text-align: center;
+    text-align: left;
     font-family: 'Cinzel', serif;
 }
 
 .project p {
-    color: var(--text-dark);
+    color: rgba(233,175,112,0.8);
     margin-bottom: 1rem;
     font-size: 0.95rem;
     line-height: 1.6;
@@ -324,8 +410,8 @@
     font-size: 0.9rem;
     display: inline-block;
     margin: 0.2rem 0;
-    color: var(--hypertext-color);
-    text-decoration-color: var(--text-decoration-color);
+    color: var(--very-light-or);
+    text-decoration-color: rgba(190,132,69,0.6);
 }
 
 .project li {
@@ -347,10 +433,10 @@
 
 .project-img {
     width: 100%;
-    height: 170px;
-    object-fit: contain;
+    height: 190px;
+    object-fit: cover;
     display: block;
-    background-color: rgba(0,0,0,0.06);
+    background-color: rgba(0,0,0,0.45);
     border-radius: 8px;
     transition: transform 0.4s ease, filter 0.3s ease;
 }
@@ -497,6 +583,15 @@
         padding: 0.45rem 0.9rem;
         font-size: 0.72rem;
     }
+
+    .project-list {
+        max-width: 900px;
+        gap: 1.6rem;
+    }
+
+    .project {
+        padding: 1.8rem 1.6rem 2rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -504,13 +599,22 @@
         padding: 2rem 1rem;
     }
 
+    .project-filters-toggle {
+        display: inline-flex;
+    }
+
     .project-filters {
+        display: none;
         flex-wrap: wrap;
         gap: 0.3rem;
-        background: transparent;
-        border: none;
-        box-shadow: none;
-        padding: 0;
+        background: rgba(0,0,0,0.9);
+        border-color: rgba(190,132,69,0.4);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        padding: 0.6rem;
+    }
+
+    .project-filters-wrapper.open .project-filters {
+        display: flex;
     }
 
     .filter-btn {
@@ -526,14 +630,25 @@
 
     .project-list {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 1.3rem;
+        max-width: 520px;
+        margin: 0 auto;
     }
 
     .project {
-        padding: 1.5rem;
+        padding: 1.3rem 1.1rem 1.6rem;
+    }
+
+    .project h3 {
+        font-size: 1.05rem;
+        text-align: center;
+    }
+
+    .project p {
+        font-size: 0.9rem;
     }
 
     .project-img {
-        height: 160px;
+        height: 150px;
     }
 }

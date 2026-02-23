@@ -76,13 +76,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+    /* =========================
+       Accordéons Skills (mobile / tablette)
+    ========================== */
+    const skillGroups = Array.from(document.querySelectorAll('#skills .skill-group'));
+
+    function updateSkillAccordions() {
+        const isCompact = window.innerWidth <= 900;
+        skillGroups.forEach(group => {
+            const title = group.querySelector('.skill-group-title');
+            if (!title) return;
+            if (isCompact) {
+                group.classList.add('accordion');
+                // par défaut fermé
+                if (!group.classList.contains('open')) group.classList.add('collapsed');
+            } else {
+                group.classList.remove('accordion', 'collapsed', 'open');
+            }
+        });
+    }
+
+    skillGroups.forEach(group => {
+        const title = group.querySelector('.skill-group-title');
+        if (!title) return;
+        title.style.cursor = 'pointer';
+        title.addEventListener('click', () => {
+            if (window.innerWidth > 900) return;
+            group.classList.toggle('open');
+            group.classList.toggle('collapsed');
+        });
+    });
+
+    updateSkillAccordions();
+    window.addEventListener('resize', updateSkillAccordions);
+
+
     /* =====================================================
        GITHUB API — Langages + Filtres automatiques
     ====================================================== */
 
-const projectCards = Array.from(document.querySelectorAll('.project[data-repo]'));
-const filterBar    = document.querySelector('.project-filters');
-const noResults    = document.querySelector('.no-results');
+const projectCards        = Array.from(document.querySelectorAll('.project[data-repo]'));
+const filterBar           = document.querySelector('.project-filters');
+const projectList         = document.querySelector('.project-list');
+const noResults           = document.querySelector('.no-results');
+const filtersWrapper      = document.querySelector('.project-filters-wrapper');
+const filtersToggleButton = document.querySelector('.project-filters-toggle');
 
 // ---- Palette couleurs soignées (même charte que le CSS) ----
 const LANG_PALETTE = {
@@ -156,6 +194,13 @@ function updateFilterCounts() {
     });
 }
 
+// ---- Met en forme la grille en fonction du nombre de projets visibles ----
+function updateProjectLayout() {
+    if (!projectList) return;
+    const visibleCards = projectCards.filter(card => !card.classList.contains('hidden'));
+    projectList.classList.toggle('single-project', visibleCards.length === 1);
+}
+
 // ---- Ajoute un bouton filtre si inexistant ----
 function addFilterBtn(lang) {
     if (filterBar.querySelector(`[data-filter="${lang}"]`)) return;
@@ -184,10 +229,18 @@ function applyFilter(e) {
     });
 
     if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    updateProjectLayout();
 }
 
 // Bouton "Tous" déjà dans le HTML
 filterBar.querySelector('[data-filter="all"]').addEventListener('click', applyFilter);
+
+// ---- Toggle filtres en mode mobile (type burger) ----
+if (filtersToggleButton && filtersWrapper) {
+    filtersToggleButton.addEventListener('click', () => {
+        filtersWrapper.classList.toggle('open');
+    });
+}
 
 // ---- Récupère les langages depuis le fichier languages.json ----
 fetch('languages.json')
@@ -206,6 +259,8 @@ fetch('languages.json')
           });
       });
       updateFilterCounts();
+      // Met à jour la mise en page initiale (vue "Tous")
+      updateProjectLayout();
   })
   .catch(err => console.error(err));
 

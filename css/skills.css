@@ -97,6 +97,37 @@
     letter-spacing: 1px;
 }
 
+/* Groupes de compétences (catégories) */
+.skill-group {
+    text-align: left;
+    margin-bottom: 1.4rem;
+}
+
+.skill-group-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(190,132,69,0.8);
+    margin-bottom: 0.5rem;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.skill-tags span {
+    font-size: 0.78rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    border: 1px solid rgba(190,132,69,0.25);
+    background: rgba(190,132,69,0.06);
+    color: rgba(235, 198, 140, 0.95);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
 /* ============================================
    ICÔNES LANGAGES & OUTILS
 ============================================ */
@@ -240,6 +271,40 @@
     .skill:last-child {
         grid-column: auto;
     }
+
+    /* Accordéons pour les groupes de skills */
+    .skill-group.accordion {
+        margin-bottom: 0.6rem;
+        border-bottom: 1px solid rgba(190,132,69,0.2);
+        padding-bottom: 0.4rem;
+    }
+
+    .skill-group.accordion .skill-group-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.2rem;
+    }
+
+    .skill-group.accordion .skill-group-title::after {
+        content: '▾';
+        font-size: 0.8rem;
+        color: rgba(190,132,69,0.8);
+        transition: transform 0.2s ease;
+    }
+
+    .skill-group.accordion.open .skill-group-title::after {
+        transform: rotate(180deg);
+    }
+
+    .skill-group.accordion .skill-tags {
+        display: none;
+        padding-top: 0.3rem;
+    }
+
+    .skill-group.accordion.open .skill-tags {
+        display: flex;
+    }
 }
 
 @media (max-width: 600px) {
@@ -267,5 +332,43 @@
 
     .skill-icon p {
         font-size: 0.65rem;
+    }
+
+    /* Soft skills en mobile : même design que #interets */
+    .skill #soft ul {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.8rem !important;
+        justify-content: center !important;
+        padding-left: 0 !important;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    .skill #soft li {
+        flex: 0 0 auto;
+        padding: 0 !important;
+        padding-left: 0 !important;
+        color: rgba(190,132,69,0.7) !important;
+        flex-direction: row !important;
+        gap: 0.5rem !important;
+
+        /* Style pill identique aux centres d'intérêt */
+        background: rgba(190,132,69,0.06) !important;
+        border: 1px solid rgba(190,132,69,0.2) !important;
+        border-radius: 50px !important;
+        padding: 0.55rem 1.1rem !important;
+        font-size: 0.85rem !important;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        cursor: default;
+        transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease !important;
+    }
+
+    .skill #soft li:hover {
+        background: rgba(190,132,69,0.14) !important;
+        border-color: rgba(190,132,69,0.45) !important;
+        color: var(--very-light-or) !important;
+        transform: translateY(-2px) !important;
     }
 }
