@@ -36,8 +36,3 @@ build/
 *.bundle.js
 *.min.js
 *.map
-
-# ========================
-# Fichiers générés dynamiquement
-# ========================
-languages.json

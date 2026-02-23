@@ -1,0 +1,55 @@
+[
+  {
+    "repo": "DigiSphere",
+    "languages": []
+  },
+  {
+    "repo": "CavalierDEuler",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "Python",
+      "HTML",
+      "Go"
+    ]
+  },
+  {
+    "repo": "test_kaggle-titanic",
+    "languages": [
+      "Jupyter Notebook"
+    ]
+  },
+  {
+    "repo": "Groupie_tracker",
+    "languages": [
+      "HTML",
+      "CSS",
+      "Go"
+    ]
+  },
+  {
+    "repo": "DBZ_Brick_Breaker",
+    "languages": [
+      "JavaScript",
+      "CSS",
+      "Go",
+      "HTML"
+    ]
+  },
+  {
+    "repo": "smart-road",
+    "languages": [
+      "Rust",
+      "Makefile"
+    ]
+  },
+  {
+    "repo": "Spotlight_Studio",
+    "languages": [
+      "CSS",
+      "HTML",
+      "JavaScript",
+      "Go Template"
+    ]
+  }
+]
