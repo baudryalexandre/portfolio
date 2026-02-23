@@ -1,36 +1,65 @@
+/* ============================================
+   SECTION CONTENT — Expériences, Formations, Intérêts
+============================================ */
 
-/* Contenu principal */
+.content {
+    background-color: var(--light-black);
+    position: relative;
+}
+
+.content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(190,132,69,0.3) 40%, rgba(190,132,69,0.3) 60%, transparent);
+    pointer-events: none;
+}
+
+.mains {
+    padding: 4rem 2rem;
+    background-color: var(--light-black);
+    transition: all 0.6s ease;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* ---- Grille 3 colonnes ---- */
 .main-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
+/* ---- Colonne générique ---- */
 .main {
-    flex: 1 1 50%;
-    /* deux colonnes */
-}
-
-.main #interets {
-    flex: 1 1 100%;
-    /* dernière sur toute la largeur */
-}
-
-.main #interets ul {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-
-}
-
-.main {
-    background: var(--dark-black);
-    padding: 2rem;
-    border: 1px solid var(--dark-or);
-    text-align: center;
+    background: transparent;
+    padding: 2.5rem 2rem;
+    border: none;
+    border-right: 1px solid rgba(190,132,69,0.1);
+    text-align: left;
     transition: var(--transition);
     color: var(--text-dark);
-
+    position: relative;
 }
+
+.main:last-child {
+    border-right: none;
+}
+
+/* Titre de colonne */
+.main h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+}
+
+/* ============================================
+   TIMELINE — Expériences & Formations
+============================================ */
 
 .main ul {
     list-style: none;
@@ -38,95 +67,176 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    gap: 0;
+    position: relative;
 }
 
+/* Ligne verticale de la timeline */
+.main ul::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(190,132,69,0.35) 10%,
+        rgba(190,132,69,0.35) 90%,
+        transparent 100%
+    );
+}
+
+/* Item timeline */
 .main li {
-    background: var(--very-light-or);
-    border-left: 4px solid var(--dark-or);
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    transition: var(--transition);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 0 1.6rem 2rem;
+    margin: 0;
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
-    font-size: 1rem;
+    gap: 0.25rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: rgba(233,175,112,0.6);
+    transition: color 0.25s ease;
 }
 
-.main #interets li {
-    font-size: 1.5rem;
+.main li:last-child {
+    padding-bottom: 0;
 }
 
+/* Point de la timeline */
+.main li::before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 7px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--dark-or);
+    border: 2px solid rgba(190,132,69,0.5);
+    box-shadow: 0 0 0 3px rgba(190,132,69,0.08);
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    z-index: 1;
+}
+
+.main li:hover::before {
+    background: var(--light-or);
+    border-color: var(--very-light-or);
+    box-shadow: 0 0 0 5px rgba(190,132,69,0.15), 0 0 12px rgba(190,132,69,0.3);
+}
+
+.main li:hover {
+    color: rgba(233,175,112,0.85);
+}
+
+/* Span = date/titre en gras doré */
 .main li span {
-    font-weight: 650;
-    color: var(--light-black);
-    font-size: clamp(1rem, 1.3vw, 1.3rem);
+    font-weight: 700;
+    color: var(--very-light-or);
+    font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.3px;
+    display: block;
 }
 
-/* Texte descriptif après le span */
-.main li::after {
-    content: attr(data-desc);
+/* ============================================
+   CENTRES D'INTÉRÊT — Pills avec icônes emoji
+============================================ */
+
+#interets ul {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    gap: 0.8rem !important;
+    justify-content: center;
+    padding-left: 0 !important;
+}
+
+/* Supprime la timeline sur les intérêts */
+#interets ul::before {
+    display: none;
+}
+
+#interets li {
+    padding: 0 !important;
+    padding-left: 0 !important;
+    color: rgba(190,132,69,0.7) !important;
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+
+    /* Style pill */
+    background: rgba(190,132,69,0.06) !important;
+    border: 1px solid rgba(190,132,69,0.2) !important;
+    border-radius: 50px !important;
+    padding: 0.55rem 1.1rem !important;
+    font-size: 0.85rem !important;
     font-weight: 500;
-    color: var(--text-dark);
-    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    letter-spacing: 0.5px;
+    cursor: default;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease !important;
 }
 
-.mains {
-    padding: 2rem;
-    background-color: var(--light-black);
-    transition: all 0.6s ease;
-    animation: fadeInUp 0.6s ease forwards;
+#interets li::before {
+    display: none !important;
 }
 
+#interets li:hover {
+    background: rgba(190,132,69,0.14) !important;
+    border-color: rgba(190,132,69,0.45) !important;
+    color: var(--very-light-or) !important;
+    transform: translateY(-2px) !important;
+}
 
-/* =========================
-   Responsive Tablet
-========================= */
+/* ============================================
+   RESPONSIVE
+============================================ */
 
-@media (max-width: 1024px) {
-
-    .main {
-        flex: 1 1 100%;
+@media (max-width: 1100px) {
+    .main-container {
+        grid-template-columns: 1fr 1fr;
     }
 
+    .main:nth-child(2) {
+        border-right: none;
+    }
+
+    .main:nth-child(3) {
+        grid-column: 1 / -1;
+        border-right: none;
+        border-top: 1px solid rgba(190,132,69,0.1);
+    }
+
+    #interets ul {
+        justify-content: center;
+    }
 }
-
-
-/* =========================
-   Responsive Mobile
-========================= */
 
 @media (max-width: 768px) {
-
     .mains {
-        padding: 1.5rem 1rem;
+        padding: 3rem 1rem;
+    }
+
+    .main-container {
+        grid-template-columns: 1fr;
     }
 
     .main {
-        flex: 1 1 100%;
-        padding: 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(190,132,69,0.1);
+        padding: 2rem 1.2rem;
     }
 
-    .main ul {
-        gap: 0.8rem;
+    .main:last-child {
+        border-bottom: none;
     }
 
-    .main li {
-        font-size: 0.95rem;
-        padding: 0.9rem 1rem;
+    .main:nth-child(3) {
+        grid-column: auto;
+        border-top: none;
     }
-
-    .main #interets ul {
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .main #interets li {
-        font-size: 1.2rem;
-        padding: 0.8rem 1rem;
-    }
-
 }

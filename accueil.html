@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="css/accueil.css">
     <link rel="stylesheet" href="css/skills.css">
     <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/hero.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="css/content.css">
@@ -21,17 +20,14 @@
 <body>
     <header>
         <div class="logo">BAUDRY Alexandre</div>
-        <!-- Burger icon -->
         <div class="burger">
             <div></div>
             <div></div>
             <div></div>
         </div>
-
-        <!-- Menu de navigation -->
         <nav class="nav-menu">
             <ul>
-                <li><a href="#hero">Accueil<span> | </span></a></li>
+                <li><a href="#about">Accueil<span> | </span></a></li>
                 <li><a href="#about">À propos<span> | </span></a></li>
                 <li><a href="#experience">Expériences<span> | </span></a></li>
                 <li><a href="#formations">Formations<span> | </span></a></li>
@@ -44,53 +40,68 @@
         </nav>
     </header>
 
-    <section id="hero">
-        <img src="assets/ville_background.png" alt="Fond ville" class="hero-bg">
-        <div id="image_profil">
-            <svg viewBox="0 0 100 100" width="20%" height="20%" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0 H100 V50 A50 50 0 0 1 0 50 Z" />
-                <g id="avatarGroup" transform="translate(50,55)">
-                    <circle cx="0" cy="0" r="45" fill="url(#avatarPattern)" />
-                </g>
-                <defs>
-                    <pattern id="avatarPattern" x="0" y="0" width="1" height="1" patternUnits="objectBoundingBox">
-                        <image href="assets/alex-avatar.png" x="0" y="0" width="100" height="100"
-                            preserveAspectRatio="xMidYMid slice" />
-                    </pattern>
-                </defs>
-            </svg>
-            
-            <div class="banner">Développeur FullStack</div>
-            <p>« Passionné par le développement web, l'ia et l'automatisation, j'aime explorer les nouvelles
-                technologies et les
-                utiliser pour créer des projets concrets. Avec une expertise en PYTHON, GOLANG, JAVASCRIPT, RUST et
-                n8n.
-                »</p>
+
+    <section id="about">
+        <!-- Image de fond reprise du hero -->
+        <img src="assets/ville_background.png" alt="Fond ville" class="about-bg">
+
+        <div class="about-inner">
+            <div class="about-divider"></div>
+
+            <!-- Colonne gauche : identité fusionnée avec le hero -->
+            <div class="about-identity">
+                <div class="about-avatar">
+                    <img src="assets/alex-avatar.png" alt="Alexandre BAUDRY">
+                </div>
+                <p class="about-name">Alexandre Baudry</p>
+                <p class="about-title">Développeur FullStack</p>
+                <p class="about-accroche">« Passionné par le web, l'IA et l'automatisation — Python · Golang · JavaScript · Rust · n8n »</p>
+                <div class="about-tags">
+                    <span class="about-tag">Python</span>
+                    <span class="about-tag">Golang</span>
+                    <span class="about-tag">JS</span>
+                    <span class="about-tag">Rust</span>
+                    <span class="about-tag">n8n</span>
+                    <span class="about-tag">IA</span>
+                </div>
+            </div>
+
+            <!-- Colonne droite : texte -->
+            <div class="about-content">
+                <h2>À propos de moi</h2>
+
+                <p class="about-intro">Je suis un développeur <strong>FullStack</strong> spécialisé dans le web avec une passion pour <strong>l'IA</strong> et <strong>l'automatisation</strong>. J'ai commencé en Avril 2023 lors de ma piscine — une immersion intensive de 26 jours — à <strong>Zone01</strong>.</p>
+
+                <hr class="about-sep">
+
+                <p>Au sein de Zone01, j'ai développé une solide base dans plusieurs technologies : <strong>Python</strong>, <strong>n8n</strong>, <strong>Golang</strong>, <strong>JavaScript</strong>, <strong>Rust</strong>, CSS, HTML et SQL. Cette formation axée sur la pédagogie collaborative <em>(peer-to-peer)</em> m'a permis d'acquérir des compétences à la fois techniques et humaines.</p>
+
+                <hr class="about-sep">
+
+                <p>Je suis rigoureux, curieux et toujours prêt à apprendre. Capable de travailler en <strong>autonomie</strong> comme en <strong>équipe</strong>, je m'organise pour respecter les délais tout en produisant un travail de qualité.</p>
+
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <span class="about-stat-number">2+</span>
+                        <span class="about-stat-label">Ans de formation</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-number">7+</span>
+                        <span class="about-stat-label">Technologies</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-number">7+</span>
+                        <span class="about-stat-label">Projets</span>
+                    </div>
+                    <div class="about-stat">
+                        <span class="about-stat-number">1</span>
+                        <span class="about-stat-label">Stage réalisé</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about">
-        <h2>À propos de moi</h2>
-        <p>Je suis un développeur FullStack spécialisé dans le web avec une passion pour l'IA et l'automatisation. J'ai
-            commencé en Avril 2023 lors de ma piscine (immersion intensive de 26 jours) à Zone01.
-            <br><br>
-            Au sein de Zone01, j'ai eu l'opportunité de développer une solide base dans plusieurs technologies de
-            programmation, notamment Python, n8n, Golang, JavaScript, Rust, CSS, HTML et SQL. Cette formation, axée sur
-            une
-            pédagogie collaborative (peer-to-peer), m'a permis d'acquérir des compétences à la fois techniques et
-            humaines
-            : je sais travailler en autonomie, en équipe, et je m'efforce toujours de trouver des solutions créatives à
-            des problèmes
-            complexes.
-            <br><br>
-            Je suis rigoureux, curieux et toujours prêt à apprendre. Grâce à ma formation, j'ai acquis des
-            compétences techniques variées, ainsi qu'une capacité à m'adapter rapidement aux nouveaux défis. Egalement
-            très à l'aise avec le travail en équipe, je sais m'organiser pour respecter les délais tout en
-            produisant un travail de qualité. Prêt à m'investir pleinement dans une entreprise ou une organisation,
-            désireux
-            d'apporter mes idées créatives et mes compétences dans des projets concrets et apprendre des autres.
-        </p>
-    </section>
     <div class="content">
         <section class="mains">
             <div class="main-container">
@@ -127,196 +138,262 @@
                     <section id="interets">
                         <h2>Centres d'intérêt</h2>
                         <ul>
-                            <li>Intelligence Artificielle</li>
-                            <li>Football</li>
-                            <li>Musique</li>
-                            <li>Gaming</li>
+                            <li>🤖 Intelligence Artificielle</li>
+                            <li>⚽ Football</li>
+                            <li>🎵 Musique</li>
+                            <li>🎮 Gaming</li>
                         </ul>
                     </section>
                 </div>
             </div>
-
         </section>
     </div>
+
     <section id="skills">
         <div class="skills-container">
-            <!-- Colonne 1 -->
             <div class="skill">
                 <section id="competences-langages">
                     <h2>Langages de Programmation</h2>
                     <div class="skill-icons">
-                        <div class="skill-icon">
-                            <img src="./assets/python_logo.png" alt="Python">
-                            <p>Python</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/golang_logo.png" alt="Golang">
-                            <p>Golang</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/javascript_logo.png" alt="JavaScript">
-                            <p>JavaScript</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/rust_logo.png" alt="Rust">
-                            <p>Rust</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/css_logo.png" alt="CSS">
-                            <p>CSS</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/html_logo.png" alt="HTML">
-                            <p>HTML</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/sqlite_logo.png" alt="Sqlite">
-                            <p>SQLITE</p>
-                        </div>
+                        <div class="skill-icon"><img src="./assets/python_logo.png" alt="Python"><p>Python</p></div>
+                        <div class="skill-icon"><img src="./assets/golang_logo.png" alt="Golang"><p>Golang</p></div>
+                        <div class="skill-icon"><img src="./assets/javascript_logo.png" alt="JavaScript"><p>JavaScript</p></div>
+                        <div class="skill-icon"><img src="./assets/rust_logo.png" alt="Rust"><p>Rust</p></div>
+                        <div class="skill-icon"><img src="./assets/html_logo.png" alt="HTML"><p>HTML</p></div>
+                        <div class="skill-icon"><img src="./assets/css_logo.png" alt="CSS"><p>CSS</p></div>
+                        <div class="skill-icon"><img src="./assets/sqlite_logo.png" alt="SQL"><p>SQL</p></div>
                     </div>
                 </section>
             </div>
-
-            <!-- Colonne 2 -->
             <div class="skill">
-                <section id="competences-tech">
-                    <h2>Technologies Utilisées</h2>
+                <section id="competences-outils">
+                    <h2>Outils & Technologies</h2>
                     <div class="skill-icons">
-                        <div class="skill-icon">
-                            <img src="./assets/n8n_logo.png" alt="n8n">
-                            <p>n8n</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/github_logo.png" alt="Github">
-                            <p>Github</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/linux_logo.png" alt="Linux">
-                            <p>Linux</p>
-                        </div>
-                        <div class="skill-icon">
-                            <img src="./assets/windows_logo.png" alt="Windows">
-                            <p>Windows</p>
-                        </div>
+                        <div class="skill-icon"><img src="./assets/n8n_logo.png" alt="n8n"><p>n8n</p></div>
+                        <div class="skill-icon"><img src="./assets/docker_logo.png" alt="Docker"><p>Docker</p></div>
+                        <div class="skill-icon"><img src="./assets/github_logo.png" alt="Github"><p>Github</p></div>
+                        <div class="skill-icon"><img src="./assets/linux_logo.png" alt="Linux"><p>Linux</p></div>
+                        <div class="skill-icon"><img src="./assets/windows_logo.png" alt="Windows"><p>Windows</p></div>
                     </div>
                 </section>
             </div>
-
-            <!-- Colonne 3 en dessous -->
             <div class="skill">
                 <section id="soft">
                     <h2>Soft Skills</h2>
                     <ul>
-                        <li>Esprit d'équipe</li>
-                        <li>Autonomie</li>
-                        <li>Créativité</li>
-                        <li>Gestion du temps</li>
-                        <li>Adaptabilité</li>
-                        <li>Résolution de problèmes</li>
+                        <li data-icon="🤝">Esprit d'équipe</li>
+                        <li data-icon="⚡">Autonomie</li>
+                        <li data-icon="💡">Créativité</li>
+                        <li data-icon="⏱️">Gestion du temps</li>
+                        <li data-icon="🔄">Adaptabilité</li>
+                        <li data-icon="🔧">Résolution de problèmes</li>
                     </ul>
                 </section>
             </div>
         </div>
     </section>
 
-
+    <!-- ============================================================
+         SECTION PROJETS
+         Seul attribut à renseigner : data-repo="nom-exact-du-repo"
+         Les langages + filtres sont injectés automatiquement via JS
+    ============================================================ -->
     <section id="projects">
         <h2>Mes projets</h2>
-        <div class="project-list">
-            <div class="project">
-                <h3>DigiSphere</h3>
-                <p>Avec mes collaborateurs <a id="github" href="https://github.com/lchouville" class="colored-link">Luka
-                        CHOUVILLE</a> et <a id="github" href="https://github.com/Dixe6" class="colored-link">Adrien
-                        FERRAND</a>, nous avons créé DigiSphere, un réseau
-                    social conçu pour encourager des échanges authentiques, respectueux et enrichissants.
-                    La plateforme valorise l’entraide, la liberté d’expression, et la construction d’une communauté
-                    inclusive.
-                    Notre ambition : faire de DigiSphere un espace où chacun peut s’exprimer librement tout en
-                    contribuant positivement à une dynamique collective.
 
-                </p>
-                <img src="./assets/DigiSphere_background.png">
-            </div>
-            <div class="project">
-                <h3>Cavalier D'euler</h3>
-                <p>Cavalier d’Euler est une application web interactive qui illustre le célèbre problème mathématique du
-                    parcours du cavalier, également connu sous le nom de problème du cavalier d’Euler. Ce projet permet
-                    de visualiser et d'explorer les différentes solutions possibles de ce défi combinatoire sur un
-                    échiquier.</p>
-                <li><a href="https://github.com/baudryalexandre/CavalierDEuler" class="colored-link">Repository</a>
-                </li>
-                <li><a href="https://baudryalexandre.github.io/CavalierDEuler/" class="colored-link">Test du jeu</a>
-                </li><br>
-                <img src="./assets/CavalierdEuler_background.png">
-            </div>
-            <div class="project">
-                <h3>Kaggle-Titanic</h3>
-                <p>Ce projet vise à prédire la survie des passagers du Titanic à l'aide de techniques d'apprentissage
-                    automatique. À l'aide de Random Forest Classifier, nous prédisons si un passager a survécu ou non en
-                    fonction de diverses caractéristiques telles que l'âge, le sexe, la classe et la taille de la
-                    famille. Le modèle est entraîné et évalué par validation croisée, et le modèle final est utilisé
-                    pour prédire la survie pour l'ensemble des données de test.</p>
-                <li><a href="https://github.com/baudryalexandre/test_kaggle-titanic" class="colored-link">Repository</a>
-                </li><br>
-                <img src="./assets/Kaggle_titanic.png">
-            </div>
-            <div class="project">
-                <h3>Groupie Tracker</h3>
-                <p>Ce projet contient deux applications liées à la gestion d'artistes musicaux. Le premier projet,
-                    Groupie Tracker, permet de consulter des informations sur des groupes et artistes via une interface
-                    web. Le second projet, Groupie Tracker Filters, est une extension permettant de filtrer ces
-                    informations selon divers critères. Ensemble, ces projets offrent une expérience d'exploration des
-                    groupes et des concerts.</p>
-                <li><a href="https://github.com/baudryalexandre/Groupie_tracker" class="colored-link">Repository</a>
-                </li><br>
-                <img src="./assets/Groupie_tracker_background.png">
-            </div>
-            <div class="project">
-                <h3>Smart road</h3>
-                <p>Ce projet vise à créer un algorithme de gestion intelligente d'une intersection pour véhicules
-                    autonomes,
-                    remplaçant les feux tricolores. L'objectif est d'éviter les collisions et les embouteillages en
-                    contrôlant
-                    la vitesse et les trajectoires des véhicules à travers une intersection en croix, où chaque voie a
-                    une direction prédéfinie.
-                    Une simulation animée permet de tester le système.</p>
-                <li><a href="https://github.com/baudryalexandre/smart-road" class="colored-link">Repository</a>
-                </li>
-                </li><br>
-                <img src="./assets/smart-road.gif">
-            </div>
-            <div class="project">
-                <h3>Make your game</h3>
-                <p>Ce projet consiste à développer un jeu en JavaScript pur,
-                    sans framework, en garantissant 60 FPS constants. Le jeu doit inclure un menu pause, un tableau de
-                    scores
-                    (temps, score, vies), et des contrôles clavier fluides. Inspiré de classiques comme Pac-Man ou
-                    Tetris, il doit
-                    être optimisé via les outils de développement pour éviter les saccades et maximiser les
-                    performances.</p>
-                <li><a href="https://github.com/baudryalexandre/DBZ_Brick_Breaker" class="colored-link">Repository</a>
-                </li>
-                </li><br>
-                <img src="./assets/dbz_brick_breaker.png">
-            </div>
-            <div class="project">
-                <h3>Spotlight Studio</h3>
-                <p>Un outil permettant de visualiser les sites vitrines et prototypes. Le but est de créer une
-                    bibliothèque de template de site vitrine,
-                    pour permettre une visualisation rapide pour le client et de pouvoir télécharger le prototype,
-                    facilitant la création de sites vitrines.
-                </p>
-                <ul>
-
-                    <li><a href="https://github.com/baudryalexandre/Spotlight_Studio" class="colored-link">Repository</a>
-                    </li>
-                    <li><a href="https://baudryalexandre.github.io/Spotlight_Studio/" class="colored-link">test du visualisateur</a>
-                    </li><br>
-                </ul>
-                <img src="./assets/Spotlight_studio.png">
-            </div>
+        <!-- Boutons de filtre — générés automatiquement par JS après chargement API -->
+        <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
         </div>
+
+        <div class="project-list">
+
+            <div class="project" data-repo="DigiSphere">
+                <h3>DigiSphere</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Avec mes collaborateurs
+                    <a href="https://github.com/lchouville" class="colored-link">Luka CHOUVILLE</a> et
+                    <a href="https://github.com/Dixe6" class="colored-link">Adrien FERRAND</a>,
+                    nous avons créé DigiSphere, un réseau social conçu pour encourager des échanges authentiques,
+                    respectueux et enrichissants. La plateforme valorise l'entraide, la liberté d'expression, et la
+                    construction d'une communauté inclusive.
+                </p>
+                <div class="project-img-wrapper">
+                    <img src="./assets/DigiSphere_background.png" alt="DigiSphere" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="CavalierDEuler">
+                <h3>Cavalier D'Euler</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Cavalier d'Euler est une application web interactive qui illustre le célèbre problème mathématique
+                    du parcours du cavalier. Ce projet permet de visualiser et d'explorer les différentes solutions
+                    possibles de ce défi combinatoire sur un échiquier.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/CavalierDEuler" class="colored-link">Repository</a></li>
+                    <li><a href="https://baudryalexandre.github.io/CavalierDEuler/" class="colored-link">Test du jeu</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/CavalierdEuler_background.png" alt="Cavalier D'Euler" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="test_kaggle-titanic">
+                <h3>Kaggle-Titanic</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Ce projet vise à prédire la survie des passagers du Titanic à l'aide de techniques d'apprentissage
+                    automatique. À l'aide de Random Forest Classifier, nous prédisons si un passager a survécu ou non
+                    en fonction de diverses caractéristiques telles que l'âge, le sexe, la classe et la taille de la
+                    famille.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/test_kaggle-titanic" class="colored-link">Repository</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/Kaggle_titanic.png" alt="Kaggle Titanic" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="Groupie_tracker">
+                <h3>Groupie Tracker</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Ce projet contient deux applications liées à la gestion d'artistes musicaux. Groupie Tracker permet
+                    de consulter des informations sur des groupes et artistes via une interface web. Une extension
+                    permet de filtrer ces informations selon divers critères.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/Groupie_tracker" class="colored-link">Repository</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/Groupie_tracker_background.png" alt="Groupie Tracker" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="smart-road">
+                <h3>Smart Road</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Ce projet vise à créer un algorithme de gestion intelligente d'une intersection pour véhicules
+                    autonomes, remplaçant les feux tricolores. L'objectif est d'éviter les collisions et les
+                    embouteillages en contrôlant la vitesse et les trajectoires des véhicules.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/smart-road" class="colored-link">Repository</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/smart-road.gif" alt="Smart Road" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="DBZ_Brick_Breaker">
+                <h3>Make Your Game</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Ce projet consiste à développer un jeu en JavaScript pur, sans framework, en garantissant 60 FPS
+                    constants. Le jeu inclut un menu pause, un tableau de scores (temps, score, vies), et des contrôles
+                    clavier fluides. Inspiré de classiques comme Pac-Man ou Tetris.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/DBZ_Brick_Breaker" class="colored-link">Repository</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/dbz_brick_breaker.png" alt="DBZ Brick Breaker" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project" data-repo="Spotlight_Studio">
+                <h3>Spotlight Studio</h3>
+                <div class="project-langs">
+                    <span class="lang-tag lang-loading">Chargement…</span>
+                </div>
+                <p>Un outil permettant de visualiser les sites vitrines et prototypes. Le but est de créer une
+                    bibliothèque de templates de sites vitrines, pour permettre une visualisation rapide pour le client
+                    et de pouvoir télécharger le prototype.</p>
+                <ul>
+                    <li><a href="https://github.com/baudryalexandre/Spotlight_Studio" class="colored-link">Repository</a></li>
+                    <li><a href="https://baudryalexandre.github.io/Spotlight_Studio/" class="colored-link">Test du visualisateur</a></li>
+                </ul>
+                <div class="project-img-wrapper">
+                    <img src="./assets/spotlight_studio.png" alt="Spotlight Studio" class="project-img">
+                    <div class="img-zoom-overlay">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            <line x1="11" y1="8" x2="11" y2="14"/>
+                            <line x1="8" y1="11" x2="14" y2="11"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="no-results" style="display:none;">Aucun projet trouvé pour ce filtre.</p>
     </section>
+
+    <!-- Modal zoom image -->
+    <div class="img-modal" id="imgModal">
+        <div class="img-modal-backdrop"></div>
+        <div class="img-modal-content">
+            <button class="img-modal-close" id="imgModalClose" aria-label="Fermer">&times;</button>
+            <img src="" alt="Aperçu du projet" id="imgModalImg">
+        </div>
+    </div>
+
 
     <section id="contact">
         <h2>Contact</h2>
@@ -327,6 +404,7 @@
             <button type="submit">Envoyer</button>
         </form>
     </section>
+
     <footer class="footer">
         <p>&copy; 2025 Zone01/Alexandre BAUDRY. Tous droits réservés.</p>
     </footer>

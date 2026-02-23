@@ -1,149 +1,271 @@
-/* Contenu principal */
+/* ============================================
+   SECTION SKILLS
+============================================ */
 
 #skills {
-        background-color: var(--dark-black);
-
+    position: relative;
+    background-color: var(--dark-black);
+    padding: 4rem 2rem;
+    overflow: hidden;
 }
 
-.skills-container {
-    display: flex;
-    flex-wrap: wrap;
+/* Lueur ambiante en arrière-plan */
+#skills::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 50% at 20% 60%, rgba(94,63,29,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 30%, rgba(190,132,69,0.05) 0%, transparent 60%);
+    pointer-events: none;
 }
 
-.skill {
-    flex: 1 1 50%;
-    /* deux colonnes */
+/* Liseré or en haut */
+#skills::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(190,132,69,0.4) 30%, rgba(233,175,112,0.6) 50%, rgba(190,132,69,0.4) 70%, transparent);
+    pointer-events: none;
 }
 
-.skill #interets {
-    flex: 1 1 100%;
-    /* dernière sur toute la largeur */
-
-}
-
-.skill #interets ul {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-
-}
-
-.skill {
-    background: var(--light-black);
-    padding: 2rem;
-    border: 1px solid var(--dark-or);
+/* Titre section */
+#skills > .skills-header {
     text-align: center;
-    transition: var(--transition);
-    color: var(--text-dark);
-
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
 }
 
-.skill ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    justify-content: space-around;
-    flex-wrap: wrap;
+/* ---- Conteneur global ---- */
+.skills-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
 }
 
-.skill li {
-    background: var(--very-light-or);
-    border-left: 4px solid var(--dark-or);
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    font-size: 1rem;
+/* ---- Bloc skill ---- */
+.skill {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(190,132,69,0.12);
+    border-radius: 16px;
+    padding: 2rem 2rem 2.5rem;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.skill #interets li {
-    font-size: 1.5rem;
+/* Liseré doré en haut de chaque bloc */
+.skill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(190,132,69,0.5), transparent);
+    transition: opacity 0.3s ease;
+    opacity: 0.6;
 }
 
-.skill li span {
-    font-weight: 650;
-    color: var(--light-black);
-    font-size: clamp(1rem, 1.3vw, 1.3rem);
+.skill:hover {
+    border-color: rgba(190,132,69,0.28);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(190,132,69,0.08);
 }
 
-/* Texte descriptif après le span */
-.skill li::after {
-    content: attr(data-desc);
-    font-weight: 500;
-    color: var(--text-dark);
-    font-size: clamp(0.9rem, 1.2vw, 1rem);
+.skill:hover::before {
+    opacity: 1;
 }
 
-.skills {
-    padding: 2rem;
-    background-color: var(--light-black);
-    transition: all 0.6s ease;
-    animation: fadeInUp 0.6s ease forwards;
+/* Soft skills : pleine largeur */
+.skill:last-child {
+    grid-column: 1 / -1;
 }
+
+/* Titre de bloc */
+.skill h2 {
+    font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+    margin-bottom: 1.8rem;
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   ICÔNES LANGAGES & OUTILS
+============================================ */
 
 .skill-icons {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 .skill-icon {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
-    background: var(--very-light-or);
-    border-radius: 8px;
-    transition: var(--transition);
-    border-left: 4px solid var(--primary-bg);
-    border-left: 4px solid var(--dark-or);
-
-
+    gap: 0.5rem;
+    padding: 1rem 0.5rem;
+    background: rgba(190,132,69,0.04);
+    border: 1px solid rgba(190,132,69,0.1);
+    border-radius: 12px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Reflet subtil en haut */
+.skill-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+}
+
+.skill-icon:hover {
+    background: rgba(190,132,69,0.1);
+    border-color: rgba(190,132,69,0.35);
+    transform: translateY(-4px);
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.3),
+        0 0 12px rgba(190,132,69,0.15);
+}
+
+.skill-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    filter: brightness(0.9) saturate(0.85);
+    transition: filter 0.25s ease, transform 0.25s ease;
+}
+
+.skill-icon:hover img {
+    filter: brightness(1.1) saturate(1.1);
+    transform: scale(1.1);
+}
+
+.skill-icon p {
+    font-size: 0.72rem;
+    color: rgba(190,132,69,0.55);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0;
+    transition: color 0.25s ease;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.skill-icon:hover p {
+    color: var(--very-light-or);
+}
+
+/* ============================================
+   SOFT SKILLS — Pills avec icônes
+============================================ */
+
+#soft {
+    padding: 0;
+}
 
 .skill #soft ul {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .skill #soft li {
-    font-size: 1.2rem;
-    margin-bottom: 0;
-}
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 
-.skill-icon img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    margin-bottom: 0.5rem;
-}
-
-.skill-icon p {
-    font-size: 0.9rem;
-    color: var(--text-accent);
+    /* Style pill */
+    padding: 0.55rem 1.2rem;
+    background: rgba(190,132,69,0.05);
+    border: 1px solid rgba(190,132,69,0.18);
+    border-radius: 50px;
+    font-size: 0.82rem;
     font-weight: 500;
+    color: rgba(190,132,69,0.65);
+    letter-spacing: 0.4px;
+    cursor: default;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+    margin: 0;
+
+    /* Supprime le style générique */
+    background-color: unset;
+    border-left: none;
+    border-radius: 50px;
 }
 
-@media (max-width: 768px) {
+.skill #soft li::before {
+    content: attr(data-icon);
+    font-size: 1rem;
+    line-height: 1;
+}
 
-    .skill #soft ul {
-        justify-content: center;
+.skill #soft li:hover {
+    background: rgba(190,132,69,0.13);
+    border-color: rgba(190,132,69,0.45);
+    color: var(--very-light-or);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+
+@media (max-width: 900px) {
+    .skills-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 
-    .skill #soft li {
-        font-size: 1rem;
-        padding: 0.8rem 1rem;
+    .skill:last-child {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    #skills {
+        padding: 3rem 1rem;
     }
 
+    .skill {
+        padding: 1.5rem 1.2rem 2rem;
+    }
+
+    .skill-icons {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 0.7rem;
+    }
+
+    .skill-icon {
+        padding: 0.8rem 0.4rem;
+    }
+
+    .skill-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .skill-icon p {
+        font-size: 0.65rem;
+    }
 }

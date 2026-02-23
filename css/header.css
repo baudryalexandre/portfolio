@@ -1,158 +1,267 @@
-/* Header */
+/* ============================================
+   HEADER — Navbar premium, dark luxury
+============================================ */
+
 header {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 0.9rem 2.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    z-index: 1000;
-    border-bottom: 2px solid var(--light-or);
-    transition: var(--transition);
-    background-color: var(--bg-header);
+    transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+
+    /* Verre fumé premium */
+    background: linear-gradient(
+        180deg,
+        rgba(10, 8, 5, 0.92) 0%,
+        rgba(17, 13, 7, 0.85) 100%
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+    /* Liseré or en bas */
+    border-bottom: 1px solid rgba(190, 132, 69, 0.25);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.03),
+        0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-#experience, #formations, #interets, #competences, #soft, #projects, #contact {
-    scroll-margin-top: 100px; /* ajuste selon la hauteur du header */
+/* Ligne décorative animée sous le header */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(190, 132, 69, 0.6) 30%,
+        rgba(233, 175, 112, 0.8) 50%,
+        rgba(190, 132, 69, 0.6) 70%,
+        transparent 100%
+    );
+}
+
+/* Scroll-margin pour les ancres */
+#experience, #formations, #interets, #competences,
+#soft, #projects, #contact {
+    scroll-margin-top: 90px;
 }
 
 
-/* Logo */
+/* ============================================
+   LOGO
+============================================ */
+
 .logo {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3vw, 2rem);
-    color: var(--light-or);
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 0 var(--dark-black);
+    letter-spacing: 3px;
+    color: var(--very-light-or);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+
+    /* Dégradé or sur le texte */
+    background: linear-gradient(135deg, #e9af70 0%, #BE8445 50%, #e9af70 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* Reflet subtil */
+    filter: drop-shadow(0 1px 8px rgba(190, 132, 69, 0.3));
+    transition: filter 0.3s ease;
+    cursor: default;
+    white-space: nowrap;
 }
 
-/* Menu desktop */
+.logo:hover {
+    filter: drop-shadow(0 2px 16px rgba(233, 175, 112, 0.55));
+}
+
+/* Petite ligne sous le logo */
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(190,132,69,0.7), transparent);
+}
+
+
+/* ============================================
+   NAV MENU — Desktop : pill container
+============================================ */
+
 .nav-menu {
     display: flex;
+    align-items: center;
 }
 
 .nav-menu ul {
     list-style: none;
     display: flex;
-    gap: 0.5rem;
+    gap: 0;
     align-items: center;
-    font-size: 1rem;
+    padding: 0.3rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(190, 132, 69, 0.15);
+    border-radius: 50px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.nav-menu ul li {
+    position: relative;
+}
+
+/* Supprimer les séparateurs | existants dans le HTML */
+.nav-menu a span {
+    display: none;
 }
 
 .nav-menu a {
+    display: block;
     text-decoration: none;
-    color: var(--dark-or);
-    font-weight: 500;
-    position: relative;
-    transition: var(--transition);
+    color: rgba(190, 132, 69, 0.65);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
     padding: 0.5rem 1rem;
+    border-radius: 50px;
+    position: relative;
+    transition: color 0.25s ease, background 0.25s ease;
+    white-space: nowrap;
 }
 
-.nav-menu a::after {
+/* Hover — fond subtil */
+.nav-menu a:hover {
+    color: var(--very-light-or);
+    background: rgba(190, 132, 69, 0.1);
+}
+
+/* Point lumineux sous le lien au hover */
+.nav-menu a::before {
     content: '';
     position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: var(--light-or);
-    transition: var(--transition);
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--light-or);
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.nav-menu a:hover::after {
-    width: 100%;
+.nav-menu a:hover::before {
+    opacity: 0.8;
 }
 
-.nav-menu a:hover {
-    color: var(--light-or);
+/* Lien actif (classe .active ajoutée par JS au scroll) */
+.nav-menu a.active {
+    color: var(--very-light-or);
+    background: linear-gradient(135deg, rgba(190,132,69,0.22) 0%, rgba(94,63,29,0.28) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 2px 8px rgba(94,63,29,0.3);
 }
 
-/* Burger */
+.nav-menu a.active::before {
+    opacity: 1;
+}
+
+/* Suppression du ::after underline de l'ancienne version */
+.nav-menu a::after {
+    display: none;
+}
+
+
+/* ============================================
+   BURGER — Icône animée élégante
+============================================ */
+
 .burger {
     display: none;
-    cursor: pointer;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    cursor: pointer;
     z-index: 2000;
+    border-radius: 10px;
+    border: 1px solid rgba(190, 132, 69, 0.2);
+    background: rgba(255,255,255,0.03);
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.burger:hover {
+    background: rgba(190, 132, 69, 0.1);
+    border-color: rgba(190, 132, 69, 0.4);
 }
 
 .burger div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--light-or);
-    transition: 0.3s ease;
-    border-radius: 3px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--light-or), var(--very-light-or));
+    border-radius: 2px;
+    transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+                opacity 0.25s ease,
+                width 0.3s ease;
+    transform-origin: center;
 }
 
+/* Ligne du milieu plus courte */
+.burger div:nth-child(2) {
+    width: 70%;
+    align-self: flex-end;
+}
+
+/* Animation croix */
 .burger.toggle div:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: translateY(7px) rotate(45deg);
+    width: 100%;
 }
 
 .burger.toggle div:nth-child(2) {
     opacity: 0;
+    transform: scaleX(0);
 }
 
 .burger.toggle div:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: translateY(-7px) rotate(-45deg);
+    width: 100%;
 }
 
-/* Animations d'apparition */
-@keyframes shieldAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.8) rotateY(-15deg);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) rotateY(0deg);
-    }
-}
 
-.blazon-container {
-    animation: shieldAppear 1s ease-out;
-}
+/* ============================================
+   OVERLAY sombre
+============================================ */
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fadeInUp {
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* Overlay sombre pour le menu mobile */
 .nav-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(3px);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
     z-index: 999;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease;
 }
 
 .nav-overlay.active {
@@ -160,8 +269,13 @@ header {
     opacity: 1;
 }
 
-/* Responsive Menu Mobile - Style Sidebar */
+
+/* ============================================
+   SIDEBAR MOBILE — Drawer premium
+============================================ */
+
 @media (max-width: 1300px) {
+
     .burger {
         display: flex;
     }
@@ -170,36 +284,74 @@ header {
         position: fixed;
         top: 0;
         right: -100%;
-        width: min(350px, 80%);
-        height: 100vh;
-        background: linear-gradient(135deg, rgba(245, 232, 205, 0.98) 0%, rgba(230, 215, 185, 0.98) 100%);
-        backdrop-filter: blur(15px);
-        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        padding-top: 5rem;
-        transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        width: min(320px, 82%);
+        height: 100dvh;
         z-index: 1500;
         overflow-y: auto;
+        padding: 0;
+        transition: right 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+
+        /* Fond sombre premium avec reflets or */
+        background: linear-gradient(
+            160deg,
+            rgba(14, 11, 6, 0.99) 0%,
+            rgba(22, 17, 9, 0.99) 60%,
+            rgba(30, 22, 10, 0.99) 100%
+        );
+        backdrop-filter: blur(20px);
+        box-shadow: -12px 0 60px rgba(0, 0, 0, 0.7), -1px 0 0 rgba(190,132,69,0.15);
     }
 
     .nav-menu.active {
         right: 0;
-        animation: slideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    /* Entête décorative de la sidebar */
+    .nav-menu::before {
+        content: 'NAVIGATION';
+        display: block;
+        font-family: 'Cinzel', serif;
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+        color: rgba(190,132,69,0.4);
+        padding: 5.5rem 2rem 1.5rem;
+        border-bottom: 1px solid rgba(190,132,69,0.12);
+        margin-bottom: 0.5rem;
+    }
+
+    /* Liseré vertical or à gauche */
+    .nav-menu::after {
+        content: '';
+        position: absolute;
+        top: 15%;
+        bottom: 15%;
+        left: 0;
+        width: 2px;
+        background: linear-gradient(
+            180deg,
+            transparent 0%,
+            rgba(190,132,69,0.5) 30%,
+            rgba(233,175,112,0.7) 50%,
+            rgba(190,132,69,0.5) 70%,
+            transparent 100%
+        );
     }
 
     .nav-menu ul {
         flex-direction: column;
         gap: 0;
         width: 100%;
-        padding: 0;
+        padding: 0 0 2rem;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
     }
 
     .nav-menu ul li {
         width: 100%;
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(30px);
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
 
@@ -208,41 +360,100 @@ header {
         transform: translateX(0);
     }
 
-    /* Délai échelonné pour chaque lien */
-    .nav-menu.active ul li:nth-child(1) { transition-delay: 0.1s; }
-    .nav-menu.active ul li:nth-child(2) { transition-delay: 0.15s; }
-    .nav-menu.active ul li:nth-child(3) { transition-delay: 0.2s; }
-    .nav-menu.active ul li:nth-child(4) { transition-delay: 0.25s; }
-    .nav-menu.active ul li:nth-child(5) { transition-delay: 0.3s; }
-    .nav-menu.active ul li:nth-child(6) { transition-delay: 0.35s; }
+    /* Délais échelonnés */
+    .nav-menu.active ul li:nth-child(1) { transition-delay: 0.08s; }
+    .nav-menu.active ul li:nth-child(2) { transition-delay: 0.13s; }
+    .nav-menu.active ul li:nth-child(3) { transition-delay: 0.18s; }
+    .nav-menu.active ul li:nth-child(4) { transition-delay: 0.23s; }
+    .nav-menu.active ul li:nth-child(5) { transition-delay: 0.28s; }
+    .nav-menu.active ul li:nth-child(6) { transition-delay: 0.33s; }
+    .nav-menu.active ul li:nth-child(7) { transition-delay: 0.38s; }
+    .nav-menu.active ul li:nth-child(8) { transition-delay: 0.43s; }
+    .nav-menu.active ul li:nth-child(9) { transition-delay: 0.48s; }
 
     .nav-menu a {
-        display: block;
-        padding: 1.2rem 2rem;
-        font-size: 1.1rem;
-        border-bottom: 1px solid rgba(139, 115, 85, 0.2);
-        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 2rem;
+        font-size: 0.82rem;
+        letter-spacing: 2px;
+        color: rgba(190, 132, 69, 0.55);
+        border-radius: 0;
+        border-bottom: 1px solid rgba(190, 132, 69, 0.07);
+        transition: color 0.25s ease, padding-left 0.25s ease, background 0.25s ease;
+        position: relative;
+    }
+
+    /* Petite flèche à gauche */
+    .nav-menu a::before {
+        content: '›';
+        font-size: 1.2rem;
+        line-height: 1;
+        color: var(--light-or);
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        position: static;
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background: none;
+        bottom: auto;
+        left: auto;
     }
 
     .nav-menu a:hover {
-        background: rgba(139, 115, 85, 0.15);
+        color: var(--very-light-or);
         padding-left: 2.5rem;
-        color: var(--light-or);
+        background: rgba(190, 132, 69, 0.07);
     }
 
-    .nav-menu a::after {
+    .nav-menu a:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Séparateurs | cachés sur mobile aussi */
+    .nav-menu a span {
         display: none;
     }
 }
 
-/* Ajustements padding header et hero */
+
+/* ============================================
+   ANIMATIONS KEYFRAMES
+============================================ */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shieldAppear {
+    from { opacity: 0; transform: scale(0.8) rotateY(-15deg); }
+    to   { opacity: 1; transform: scale(1) rotateY(0deg); }
+}
+
+.blazon-container   { animation: shieldAppear 1s ease-out; }
+.animate-fadeInUp   { animation: fadeInUp 0.6s ease forwards; }
+
+
+/* ============================================
+   RESPONSIVE AJUSTEMENTS
+============================================ */
+
 @media (max-width: 1024px) {
     header {
-        padding: 1rem;
+        padding: 0.9rem 1.5rem;
     }
 }
 
 @media (max-width: 768px) {
+    header {
+        padding: 0.8rem 1.2rem;
+    }
+
     #hero {
         min-height: 90vh;
         padding-top: 80px;
@@ -252,27 +463,15 @@ header {
         padding: 1rem;
         gap: 1.5rem;
     }
-
-    .nav-menu {
-        width: min(300px, 85%);
-    }
 }
 
 @media (max-width: 480px) {
     .logo {
-        font-size: 1rem;
-    }
-
-    #hero p {
         font-size: 0.9rem;
+        letter-spacing: 2px;
     }
 
     .nav-menu {
         width: 90%;
-    }
-
-    .nav-menu a {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
     }
 }
