@@ -1,0 +1,43 @@
+# ========================
+# Node / npm
+# ========================
+node_modules/
+package-lock.json
+yarn.lock
+
+# ========================
+# Fichiers sensibles / secrets
+# ========================
+.env
+.env.local
+.env.*.local
+
+# ========================
+# Logs
+# ========================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# Système / IDE
+# ========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ========================
+# Build / distribution
+# ========================
+dist/
+build/
+*.bundle.js
+*.min.js
+*.map
+
+# ========================
+# Fichiers générés dynamiquement
+# ========================
+languages.json
