@@ -71,7 +71,7 @@ h1 {
   }
 }
 
-.btn-entrer {
+.btn-entrer{
   padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
   border: 2px solid #d4af37;
   color: #d4af37;
@@ -83,7 +83,7 @@ h1 {
   margin-top: 10px;
 }
 
-.btn-entrer:hover {
+.btn-entrer:hover, .repo_btn.hover{
   background: #d4af37;
   color: #000;
   transform: scale(1.05);

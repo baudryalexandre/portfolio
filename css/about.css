@@ -461,7 +461,7 @@
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px) {         
     .about-avatar {
         width: 110px;
         height: 110px;
@@ -473,5 +473,6 @@
 
     .about-inner {
         gap: 2rem;
+        margin: 1rem 0;
     }
 }

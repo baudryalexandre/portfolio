@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
     user-select: none;
-
 }
 
 /* Variables CSS */
@@ -17,7 +16,7 @@
     --text-dark: #3b2f2f;
     --shadow-color: rgba(59, 47, 47, 0.3);
     --hypertext-color: #0300ce;
-    --text-decoration-color: red;
+    --text-decoration-color: rgb(167, 53, 0);
     --bg-header: #e5d2b3af;
     --transition: all 0.3s ease;
 }
@@ -25,8 +24,8 @@
 body {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
-    /* line-height: 1.6; */
     overflow-x: hidden;
+    background-color: #16110A;
 }
 
 /* Scrollbar personnalisée */
@@ -52,16 +51,16 @@ section {
 
 /* Style de base du lien */
 .colored-link {
-    color: var(--text-dark);
-    text-decoration: underline #3b2f2f;
-    transition: color 0.3s, text-decoration-color 0.3s;
-    font-size: 1rem;
-
+    color: var(--very-light-or);
+    text-decoration: underline var(--text-decoration-color);
+    transition: color 0.2s, text-decoration-color 0.3s;
+    text-underline-offset: 0.35rem;  
 }
 
 .colored-link:hover {
-    color: var(--accent-color);
-    text-decoration-color: #5c4430;
+    color: var(--text-decoration-color);
+    text-decoration-color: var(--text-decoration-color);
+    font-weight: bold;
 }
 
 /* Titres */
@@ -175,12 +174,6 @@ h2 {
 
     .skill-icon p {
         font-size: 0.8rem;
-    }
-
-    /* Centres d'intérêt */
-    #interets ul li {
-        font-size: 0.9em;
-        padding: 10px;
     }
 
     .main-container {
