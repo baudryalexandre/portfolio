@@ -402,6 +402,20 @@
     line-height: 1.6;
 }
 
+.repo_btn_construction {
+    color: red !important;
+    padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
+    border: 2px solid red;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0 !important;
+    margin-top: 10px !important;
+    cursor:not-allowed;
+
+}
+
 .project ul {
     list-style: none;
     padding: 0;
@@ -466,6 +480,8 @@
         transform: scale(1.05);
     }
 }
+
+
 
 
 /* ===========================
