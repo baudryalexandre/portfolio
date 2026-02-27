@@ -110,170 +110,173 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSkillAccordions();
     window.addEventListener('resize', updateSkillAccordions);
 
+/* =====================================================
+   GITHUB API — Langages + Topics + Filtres automatiques
+====================================================== */
 
-    /* =====================================================
-       GITHUB API — Langages + Filtres automatiques
-    ====================================================== */
+const projectCards = Array.from(document.querySelectorAll('.project[data-repo]'));
+const filterBar = document.querySelector('.project-filters');
+const projectList = document.querySelector('.project-list');
+const noResults = document.querySelector('.no-results');
+const filtersWrapper = document.querySelector('.project-filters-wrapper');
+const filtersToggleButton = document.querySelector('.project-filters-toggle');
 
-    const projectCards = Array.from(document.querySelectorAll('.project[data-repo]'));
-    const filterBar = document.querySelector('.project-filters');
-    const projectList = document.querySelector('.project-list');
-    const noResults = document.querySelector('.no-results');
-    const filtersWrapper = document.querySelector('.project-filters-wrapper');
-    const filtersToggleButton = document.querySelector('.project-filters-toggle');
+// ---- Palette couleurs langages ----
+const LANG_PALETTE = {
+    JavaScript: { bg: 'rgba(215,170,30,0.12)', color: '#D4A017', border: 'rgba(215,170,30,0.3)' },
+    TypeScript: { bg: 'rgba(49,120,198,0.12)', color: '#5B9BD5', border: 'rgba(49,120,198,0.3)' },
+    Python: { bg: 'rgba(55,118,171,0.12)', color: '#4A9CC7', border: 'rgba(55,118,171,0.3)' },
+    Go: { bg: 'rgba(0,173,215,0.1)', color: '#00B4D8', border: 'rgba(0,173,215,0.28)' },
+    Rust: { bg: 'rgba(180,72,30,0.12)', color: '#C96442', border: 'rgba(180,72,30,0.28)' },
+    HTML: { bg: 'rgba(220,80,40,0.1)', color: '#D96941', border: 'rgba(220,80,40,0.28)' },
+    CSS: { bg: 'rgba(21,114,182,0.1)', color: '#3D9BD4', border: 'rgba(21,114,182,0.28)' },
+    Shell: { bg: 'rgba(80,180,80,0.1)', color: '#5DBB5D', border: 'rgba(80,180,80,0.28)' },
+    Makefile: { bg: 'rgba(90,140,90,0.1)', color: '#7AAE7A', border: 'rgba(90,140,90,0.28)' },
+    Jupyter: { bg: 'rgba(218,91,11,0.1)', color: '#E07A3C', border: 'rgba(218,91,11,0.28)' },
+    Dockerfile: { bg: 'rgba(25,95,175,0.1)', color: '#4A87C7', border: 'rgba(25,95,175,0.28)' },
+    YAML: { bg: 'rgba(160,150,130,0.1)', color: '#A89B80', border: 'rgba(160,150,130,0.28)' },
+    JSON: { bg: 'rgba(160,150,130,0.1)', color: '#A89B80', border: 'rgba(160,150,130,0.28)' },
+};
 
-    // ---- Palette couleurs soignées (même charte que le CSS) ----
-    const LANG_PALETTE = {
-        JavaScript: { bg: 'rgba(215,170,30,0.12)', color: '#D4A017', border: 'rgba(215,170,30,0.3)' },
-        TypeScript: { bg: 'rgba(49,120,198,0.12)', color: '#5B9BD5', border: 'rgba(49,120,198,0.3)' },
-        Python: { bg: 'rgba(55,118,171,0.12)', color: '#4A9CC7', border: 'rgba(55,118,171,0.3)' },
-        Go: { bg: 'rgba(0,173,215,0.1)', color: '#00B4D8', border: 'rgba(0,173,215,0.28)' },
-        Rust: { bg: 'rgba(180,72,30,0.12)', color: '#C96442', border: 'rgba(180,72,30,0.28)' },
-        HTML: { bg: 'rgba(220,80,40,0.1)', color: '#D96941', border: 'rgba(220,80,40,0.28)' },
-        CSS: { bg: 'rgba(21,114,182,0.1)', color: '#3D9BD4', border: 'rgba(21,114,182,0.28)' },
-        Shell: { bg: 'rgba(80,180,80,0.1)', color: '#5DBB5D', border: 'rgba(80,180,80,0.28)' },
-        Makefile: { bg: 'rgba(90,140,90,0.1)', color: '#7AAE7A', border: 'rgba(90,140,90,0.28)' },
-        Jupyter: { bg: 'rgba(218,91,11,0.1)', color: '#E07A3C', border: 'rgba(218,91,11,0.28)' },
-        Dockerfile: { bg: 'rgba(25,95,175,0.1)', color: '#4A87C7', border: 'rgba(25,95,175,0.28)' },
-        YAML: { bg: 'rgba(160,150,130,0.1)', color: '#A89B80', border: 'rgba(160,150,130,0.28)' },
-        JSON: { bg: 'rgba(160,150,130,0.1)', color: '#A89B80', border: 'rgba(160,150,130,0.28)' },
-    };
+function palette(lang) {
+    return LANG_PALETTE[lang] || { bg: 'rgba(190,132,69,0.08)', color: '#BE8445', border: 'rgba(190,132,69,0.25)' };
+}
 
-    function palette(lang) {
-        return LANG_PALETTE[lang] || { bg: 'rgba(190,132,69,0.08)', color: '#BE8445', border: 'rgba(190,132,69,0.25)' };
-    }
+function normalizeLang(lang) {
+    if (lang === 'Jupyter Notebook') return 'Jupyter';
+    return lang;
+}
 
-    // Normalise le nom affiché (ex: "Jupyter Notebook" → "Jupyter")
-    function normalizeLang(lang) {
-        if (lang === 'Jupyter Notebook') return 'Jupyter';
-        return lang;
-    }
+function createLangTag(rawLang) {
+    const lang = normalizeLang(rawLang);
+    const span = document.createElement('span');
+    span.className = 'lang-tag';
+    span.setAttribute('data-lang', lang);
+    span.textContent = lang;
+    const p = palette(lang);
+    span.style.background = p.bg;
+    span.style.color = p.color;
+    span.style.borderColor = p.border;
+    return span;
+}
 
-    // Crée un tag <span class="lang-tag">
-    function createLangTag(rawLang) {
-        const lang = normalizeLang(rawLang);
-        const span = document.createElement('span');
-        span.className = 'lang-tag';
-        span.setAttribute('data-lang', lang);
-        span.textContent = lang;
-        const p = palette(lang);
-        span.style.background = p.bg;
-        span.style.color = p.color;
-        span.style.borderColor = p.border;
-        return span;
-    }
+// ---- Comptage des projets par langage ----
+const langCount = {}; // { JavaScript: 3, Python: 2, ... }
 
-    // ---- Comptage des projets par langage ----
-    const langCount = {}; // { JavaScript: 3, Python: 2, ... }
-
-    function updateFilterCounts() {
-        document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
-            const filter = btn.getAttribute('data-filter');
-            let existingBadge = btn.querySelector('.count');
-
-            if (filter === 'all') {
-                const total = projectCards.filter(c => !c.classList.contains('hidden')).length;
-                if (!existingBadge) {
-                    existingBadge = document.createElement('span');
-                    existingBadge.className = 'count';
-                    btn.appendChild(existingBadge);
-                }
-                existingBadge.textContent = projectCards.length;
-                return;
-            }
-
-            const count = langCount[filter] || 0;
-            if (count > 0) {
-                if (!existingBadge) {
-                    existingBadge = document.createElement('span');
-                    existingBadge.className = 'count';
-                    btn.appendChild(existingBadge);
-                }
-                existingBadge.textContent = count;
-            }
-        });
-    }
-
-    // ---- Met en forme la grille en fonction du nombre de projets visibles ----
-    function updateProjectLayout() {
-        if (!projectList) return;
-        const visibleCards = projectCards.filter(card => !card.classList.contains('hidden'));
-        projectList.classList.toggle('single-project', visibleCards.length === 1);
-    }
-
-    // ---- Ajoute un bouton filtre si inexistant ----
-    function addFilterBtn(lang) {
-        if (filterBar.querySelector(`[data-filter="${lang}"]`)) return;
-        const btn = document.createElement('button');
-        btn.className = 'filter-btn';
-        btn.setAttribute('data-filter', lang);
-        btn.textContent = lang;
-        filterBar.appendChild(btn);
-        btn.addEventListener('click', applyFilter);
-    }
-
-    // ---- Applique le filtre sélectionné ----
-    function applyFilter(e) {
-        const btn = e.currentTarget;
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
+function updateFilterCounts() {
+    document.querySelectorAll('.filter-btn[data-filter]').forEach(btn => {
         const filter = btn.getAttribute('data-filter');
-        let visible = 0;
+        let existingBadge = btn.querySelector('.count');
 
-        projectCards.forEach(card => {
-            const langs = (card.getAttribute('data-langs') || '').split(',').filter(Boolean);
-            const match = filter === 'all' || langs.includes(filter);
-            card.classList.toggle('hidden', !match);
-            if (match) visible++;
-        });
+        if (filter === 'all') {
+            const total = projectCards.filter(c => !c.classList.contains('hidden')).length;
+            if (!existingBadge) {
+                existingBadge = document.createElement('span');
+                existingBadge.className = 'count';
+                btn.appendChild(existingBadge);
+            }
+            existingBadge.textContent = projectCards.length;
+            return;
+        }
 
-        if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
-        updateProjectLayout();
-    }
+        const count = langCount[filter] || 0;
+        if (count > 0) {
+            if (!existingBadge) {
+                existingBadge = document.createElement('span');
+                existingBadge.className = 'count';
+                btn.appendChild(existingBadge);
+            }
+            existingBadge.textContent = count;
+        }
+    });
+}
 
-    // Bouton "Tous" déjà dans le HTML
-    filterBar.querySelector('[data-filter="all"]').addEventListener('click', applyFilter);
+function updateProjectLayout() {
+    if (!projectList) return;
+    const visibleCards = projectCards.filter(card => !card.classList.contains('hidden'));
+    projectList.classList.toggle('single-project', visibleCards.length === 1);
+}
 
-    // ---- Toggle filtres en mode mobile (type burger) ----
-    if (filtersToggleButton && filtersWrapper) {
-        filtersToggleButton.addEventListener('click', () => {
-            filtersWrapper.classList.toggle('open');
-        });
-    }
+function addFilterBtn(lang) {
+    if (filterBar.querySelector(`[data-filter="${lang}"]`)) return;
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-filter', lang);
+    btn.textContent = lang;
+    filterBar.appendChild(btn);
+    btn.addEventListener('click', applyFilter);
+}
 
-    // ---- Récupère les langages depuis le fichier languages.json ----
-    fetch('languages.json')
-        .then(res => res.json())
-        .then(data => {
-            data.forEach(d => {
-                const card = document.querySelector(`.project[data-repo="${d.repo}"]`);
-                if (!card) return;
-                const languages = Array.isArray(d.languages) && d.languages.length > 0
-                    ? d.languages
-                    : ['Non communiqué'];
+function applyFilter(e) {
+    const btn = e.currentTarget;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
-                card.setAttribute('data-langs', languages.join(','));
+    const filter = btn.getAttribute('data-filter');
+    let visible = 0;
 
-                const container = card.querySelector('.project-langs');
-                container.innerHTML = '';
+    projectCards.forEach(card => {
+        const langs = (card.getAttribute('data-langs') || '').split(',').filter(Boolean);
+        const match = filter === 'all' || langs.includes(filter);
+        card.classList.toggle('hidden', !match);
+        if (match) visible++;
+    });
 
-                languages.forEach(lang => {
-                    container.appendChild(createLangTag(lang));
+    if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    updateProjectLayout();
+}
 
-                    // On ne crée pas de filtre pour "Non communiqué"
-                    if (lang !== 'Non communiqué') {
-                        langCount[lang] = (langCount[lang] || 0) + 1;
-                        addFilterBtn(lang);
-                    }
-                });
+filterBar.querySelector('[data-filter="all"]').addEventListener('click', applyFilter);
+
+if (filtersToggleButton && filtersWrapper) {
+    filtersToggleButton.addEventListener('click', () => {
+        filtersWrapper.classList.toggle('open');
+    });
+}
+
+// ---- Récupère les langages et topics ----
+fetch('languages.json')
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(d => {
+            const card = document.querySelector(`.project[data-repo="${d.repo}"]`);
+            if (!card) return;
+
+            // ---- Langages ----
+            const languages = Array.isArray(d.languages) && d.languages.length > 0 ? d.languages : ['Non communiqué'];
+            card.setAttribute('data-langs', languages.join(','));
+            const langContainer = card.querySelector('.project-langs');
+            langContainer.innerHTML = '';
+            languages.forEach(lang => {
+                langContainer.appendChild(createLangTag(lang));
+                if (lang !== 'Non communiqué') {
+                    langCount[lang] = (langCount[lang] || 0) + 1;
+                    addFilterBtn(lang);
+                }
             });
-            updateFilterCounts();
-            // Met à jour la mise en page initiale (vue "Tous")
-            updateProjectLayout();
-        })
-        .catch(err => console.error(err));
 
+            // ---- Topics ----
+            if (Array.isArray(d.topics) && d.topics.length > 0) {
+                let topicContainer = card.querySelector('.project-topics');
+                if (!topicContainer) {
+                    topicContainer = document.createElement('div');
+                    topicContainer.className = 'project-topics';
+                    langContainer.insertAdjacentElement('afterend', topicContainer);
+                }
+                topicContainer.innerHTML = '';
+                d.topics.forEach(topic => {
+                    const span = document.createElement('span');
+                    span.className = 'topic-tag';
+                    span.textContent = topic;
+                    topicContainer.appendChild(span);
+                });
+            }
+        });
+
+        updateFilterCounts();
+        updateProjectLayout();
+    })
+    .catch(err => console.error(err));
     /* =========================
        Zoom image (modal)
     ========================== */

@@ -326,6 +326,40 @@
     border-color: rgba(160, 150, 130, 0.28);
 }
 
+/* ===========================
+   TOPIC TAGS — Sobres et lisibles
+=========================== */
+
+.project-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-bottom: 0.9rem;
+    justify-content: center;
+}
+
+.topic-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    border: 1px solid rgba(190, 132, 69, 0.15);
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    transition: filter 0.2s ease, background 0.2s ease, color 0.2s ease;
+    cursor: default;
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(245, 216, 186, 0.8);
+}
+
+/* Hover optionnel si tu veux effet léger */
+.topic-tag:hover {
+    filter: brightness(1.1);
+}
 
 /* ===========================
    CARTES PROJETS
